@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = { title: "Community Pixel Art", description: "A permanent community-owned pixel canvas for Torn City." };
 
@@ -21,4 +22,4 @@ const fallbackStyles = `
   @media (max-width: 960px) { .canvas-layout, .landing { grid-template-columns: 1fr; } .admin-grid { grid-template-columns: repeat(2, 1fr); } .canvas-viewport { max-height: 62vh; } .landing { gap: 18px; min-height: auto; padding-top: 90px; } } @media (max-width: 580px) { .app-shell { padding: 9px; } .app-header { align-items: flex-start; flex-direction: column; } .app-header > div:last-child { width: 100%; justify-content: space-between; } .canvas-toolbar { align-items: flex-start; flex-direction: column; } .admin-grid { grid-template-columns: 1fr; } }
 `;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) { return <html lang="en"><head><style>{fallbackStyles}</style></head><body>{children}</body></html>; }
+export default function RootLayout({ children }: { children: React.ReactNode }) { return <html lang="en"><head><style>{fallbackStyles}</style></head><body>{children}<Analytics /></body></html>; }
