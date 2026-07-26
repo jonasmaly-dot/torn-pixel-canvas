@@ -1,6 +1,6 @@
 # Torn Pixel Canvas
 
-Eine Next.js-App für ein dauerhaftes 100×100-Pixel-Canvas. Der Käufer-Key wird nur zur Torn-Identifikation verwendet; Kaufverifikation geschieht ausschließlich mit einem getrennten Admin-Key auf dem Server.
+Eine Next.js-App für ein dauerhaftes 10000×10000-Pixel-Art. Der Käufer-Key wird nur zur Torn-Identifikation verwendet; Kaufverifikation geschieht ausschließlich mit einem getrennten Admin-Key auf dem Server.
 
 ## Lokal starten
 
