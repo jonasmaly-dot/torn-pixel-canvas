@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PixelState {
+  FREE
+  PENDING
+  OWNED
+  LOCKED
+}
+
+enum OrderStatus {
+  AWAITING_PAYMENT
+  PAID
+  EXPIRED
+  CANCELLED
+}
+
+model User {
+  id         String   @id @default(cuid())
+  tornId     Int      @unique
+  playerName String
+  isAdmin    Boolean  @default(false)
+  credits    Int      @default(0)
+  createdAt  DateTime @default(now())
+  pixels     Pixel[]
+  orders     Order[]
+}
+
+model Pixel {
+  id          String     @id @default(cuid())
+  x           Int
+  y           Int
+  color       String
+  state       PixelState @default(FREE)
+  ownerId     String?
+  owner       User?      @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  purchasedAt DateTime?
+  orders      Order[]
+
+  @@unique([x, y])
+  @@index([state])
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  userId         String
+  pixelId        String
+  status         OrderStatus @default(PAID)
+  expectedItem   String      @default("Xanax")
+  expectedAmount Int         @default(1)
+  expiresAt      DateTime?
+  createdAt      DateTime    @default(now())
+  paidAt         DateTime?
+  user           User        @relation(fields: [userId], references: [id], onDelete: Restrict)
+  pixel          Pixel       @relation(fields: [pixelId], references: [id], onDelete: Restrict)
+  transactions   Transaction[]
+
+  @@index([status])
+}
+
+model Transaction {
+  id         String   @id @default(cuid())
+  externalId String   @unique
+  senderId   Int
+  item       String
+  amount     Int
+  message    String?
+  creditsAdded Int     @default(0)
+  occurredAt DateTime
+  processed  Boolean  @default(false)
+  orderId    String?
+  order      Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+
+  @@index([processed, occurredAt])
+}
