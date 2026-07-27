@@ -2,7 +2,18 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const COLORS = ["#ffffff", "#111111", "#dc2626", "#2563eb", "#16a34a", "#eab308", "#f97316", "#9333ea", "#ec4899", "#854d0e"] as const;
+const COLORS = const COLORS = [
+  "#000000","#404040","#808080","#C0C0C0","#FFFFFF",
+  "#7F0000","#B22222","#DC2626","#EF4444","#FCA5A5",
+  "#FF7F00","#F97316","#FB923C","#FDBA74",
+  "#FFFF00","#EAB308","#FACC15","#FEF08A",
+  "#006400","#15803D","#16A34A","#22C55E","#86EFAC",
+  "#008080","#06B6D4","#67E8F9",
+  "#0000CD","#2563EB","#3B82F6","#93C5FD",
+  "#4B0082","#7C3AED","#9333EA","#C084FC",
+  "#FF1493","#EC4899","#F472B6",
+  "#8B4513","#854D0E","#D2B48C"] 
+as const; as const;
 const BASE_CANVAS_SIZE = 640;
 type Pixel = { x: number; y: number; color: string; purchasedAt: string | null; owner: { playerName: string; tornId: number } };
 type Coordinate = { x: number; y: number };
