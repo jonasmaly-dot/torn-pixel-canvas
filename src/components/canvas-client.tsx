@@ -12,8 +12,7 @@ const COLORS = const COLORS = [
   "#0000CD","#2563EB","#3B82F6","#93C5FD",
   "#4B0082","#7C3AED","#9333EA","#C084FC",
   "#FF1493","#EC4899","#F472B6",
-  "#8B4513","#854D0E","#D2B48C"] 
-as const; as const;
+  "#8B4513","#854D0E","#D2B48C"] as const; as const;
 const BASE_CANVAS_SIZE = 640;
 type Pixel = { x: number; y: number; color: string; purchasedAt: string | null; owner: { playerName: string; tornId: number } };
 type Coordinate = { x: number; y: number };
