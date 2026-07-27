@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum PixelState {
@@ -65,18 +66,18 @@ model Order {
 }
 
 model Transaction {
-  id         String   @id @default(cuid())
-  externalId String   @unique
-  senderId   Int
-  item       String
-  amount     Int
-  message    String?
-  creditsAdded Int     @default(0)
-  occurredAt DateTime
-  processed  Boolean  @default(false)
-  orderId    String?
-  order      Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
-  createdAt  DateTime @default(now())
+  id           String   @id @default(cuid())
+  externalId   String   @unique
+  senderId     Int
+  item         String
+  amount       Int
+  message      String?
+  creditsAdded Int      @default(0)
+  occurredAt   DateTime
+  processed    Boolean  @default(false)
+  orderId      String?
+  order        Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now())
 
   @@index([processed, occurredAt])
 }
