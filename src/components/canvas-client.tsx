@@ -81,8 +81,6 @@ function randomColor() {
 }
   
   async function buyPixel() {
-
-}
     
     if (!selected) return;
     setNotice("");
