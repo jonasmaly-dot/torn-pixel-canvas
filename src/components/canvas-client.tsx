@@ -51,15 +51,6 @@ export default function CanvasClient({ pixels, user, leaders }: { pixels: Pixel[
       function chooseColor(value: string) {
     setColor(value);
 
-    const updated = [
-        value,
-        ...recentColors.filter(c => c !== value)
-    ].slice(0,8);
-
-    setRecentColors(updated);
-    localStorage.setItem("recentColors", JSON.stringify(updated));
-}
-
   const updated = [
     value,
     ...recentColors.filter((c) => c !== value),
