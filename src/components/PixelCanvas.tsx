@@ -14,10 +14,14 @@ export default function PixelCanvas({
   pixels,
   gridSize,
   zoom,
+  selected,
+  selectPixel,
 }: {
   pixels: Pixel[];
   gridSize: number;
   zoom: number;
+  selected: { x: number; y: number } | null;
+  selectPixel: (pixel: { x: number; y: number }, claimed: boolean) => void;
 }) {
   const map = new Map(
     pixels.map((pixel) => [`${pixel.x}:${pixel.y}`, pixel])
