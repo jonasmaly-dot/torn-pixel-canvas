@@ -46,8 +46,8 @@ export default function PixelCanvas({
         padding: 0,
         cursor: pixel ? "not-allowed" : "pointer",
         boxSizing: "border-box",
-             }}
-           />
+              }}
+            />
           );
         })}
       </div>
