@@ -10,65 +10,85 @@ type Pixel = {
   };
 };
 
+type Props = {
+  pixels: Pixel[];
+  gridSize: number;
+  pixelSize: number;
+  selected: { x: number; y: number } | null;
+  selectPixel: (
+    pixel: { x: number; y: number },
+    claimed: boolean
+  ) => void;
+};
+
 export default function PixelCanvas({
   pixels,
   gridSize,
-  zoom,
+  pixelSize,
   selected,
   selectPixel,
-}: {
-  pixels: Pixel[];
-  gridSize: number;
-  zoom: number;
-  selected: { x: number; y: number } | null;
-  selectPixel: (pixel: { x: number; y: number }, claimed: boolean) => void;
-}) 
-{const map = new Map(
-    pixels.map((pixel) => [`${pixel.x}:${pixel.y}`, pixel])
+}: Props) {
+  const map = new Map(
+    pixels.map((p) => [`${p.x}:${p.y}`, p] as const)
   );
 
   return (
-  <div
-    style={{
-      overflow: "auto",
-    }}
-  >
     <div
       style={{
-        display: "grid",
-        gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+        overflow: "auto",
+        width: "100%",
+        height: "100%",
       }}
     >
-      {Array.from({ length: gridSize * gridSize }, (_, index) => {
-        const x = index % gridSize;
-        const y = Math.floor(index / gridSize);
-        const pixel = map.get(`${x}:${y}`);
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${gridSize}, ${pixelSize}px)`,
+          gridTemplateRows: `repeat(${gridSize}, ${pixelSize}px)`,
+          width: gridSize * pixelSize,
+          height: gridSize * pixelSize,
+          background: "#ffffff",
+        }}
+      >
+        {Array.from({ length: gridSize * gridSize }, (_, index) => {
+          const x = index % gridSize;
+          const y = Math.floor(index / gridSize);
 
-        return (
-          <button
-            key={index}
-            onClick={() => selectPixel({ x, y }, !!pixel)}
-            title={
-              pixel
-                ? `${pixel.owner.playerName} (${pixel.owner.tornId})`
-                : `(${x}, ${y})`
-            }
-            style={{
-              width: zoom,
-              height: zoom,
-              background: pixel?.color ?? "#ffffff",
-              border:
-                selected?.x === x && selected?.y === y
+          const pixel = map.get(`${x}:${y}`);
+
+          const active =
+            selected?.x === x &&
+            selected?.y === y;
+
+          return (
+            <button
+              key={index}
+              onClick={() =>
+                selectPixel({ x, y }, !!pixel)
+              }
+              title={
+                pixel
+                  ? `${pixel.owner.playerName} [${pixel.owner.tornId}]`
+                  : `(${x}, ${y})`
+              }
+              style={{
+                width: pixelSize,
+                height: pixelSize,
+                padding: 0,
+                margin: 0,
+                background: pixel?.color ?? "#ffffff",
+                border: active
                   ? "2px solid red"
                   : "1px solid #ececec",
-              padding: 0,
-              cursor: pixel ? "not-allowed" : "pointer",
-              boxSizing: "border-box",
-            }}
-          />
-        );
-      })}
+                cursor: pixel
+                  ? "not-allowed"
+                  : "pointer",
+                boxSizing: "border-box",
+              }}
+            />
+          );
+        })}
+      </div>
     </div>
-  </div>
-);
+  );
 }
