@@ -42,12 +42,20 @@ export default function PixelCanvas({
     >
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${gridSize}, ${pixelSize}px)`,
-          gridTemplateRows: `repeat(${gridSize}, ${pixelSize}px)`,
-          width: gridSize * pixelSize,
-          height: gridSize * pixelSize,
-          background: "#ffffff",
+  display: "grid",
+  gridTemplateColumns: `repeat(${gridSize}, ${pixelSize}px)`,
+  gridTemplateRows: `repeat(${gridSize}, ${pixelSize}px)`,
+  width: gridSize * pixelSize,
+  height: gridSize * pixelSize,
+
+  background: "#ffffff",
+
+  borderRadius: 10,
+
+  boxShadow:
+    "0 12px 35px rgba(0,0,0,.18)",
+
+  overflow: "hidden",
         }}
       >
         {Array.from({ length: gridSize * gridSize }, (_, index) => {
@@ -84,6 +92,7 @@ export default function PixelCanvas({
                   ? "not-allowed"
                   : "pointer",
                 boxSizing: "border-box",
+                transition: "transform .1s ease, filter .15s ease",
               }}
             />
           );
