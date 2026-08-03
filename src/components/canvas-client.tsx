@@ -24,6 +24,11 @@ export default function CanvasClient({ pixels, user, leaders }: { pixels: Pixel[
   const [color, setColor] = useState<string>(COLORS[0]);
   const [credits, setCredits] = useState(user.credits);
   const [zoom, setZoom] = useState(1);
+  const pendingZoom = useRef<{
+  mouseX: number;
+  mouseY: number;
+  oldZoom: number;
+} | null>(null);
   const [notice, setNotice] = useState("");
   const [showCredits, setShowCredits] = useState(false);
   
