@@ -77,17 +77,30 @@ style={{
 style={{
   width: pixelSize,
   height: pixelSize,
+  minWidth: pixelSize,
+  minHeight: pixelSize,
+  maxWidth: pixelSize,
+  maxHeight: pixelSize,
+
   padding: 0,
   margin: 0,
+
   appearance: "none",
   WebkitAppearance: "none",
+
   borderRadius: 0,
   display: "block",
+
   background: pixel?.color ?? "#ffffff",
-  border: active ? "2px solid red" : "1px solid #ececec",
+
+  border: active
+    ? "2px solid red"
+    : "1px solid #000",
+
   cursor: pixel ? "not-allowed" : "pointer",
+
   boxSizing: "border-box",
-}}
+              }}
             />
           );
         })}
