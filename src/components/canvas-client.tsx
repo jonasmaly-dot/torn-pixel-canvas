@@ -127,12 +127,6 @@ function randomColor() {
     maxHeight: "75vh",
   }}
 >
-  style={{
-    overflow: "auto",
-    width: "100%",
-    maxHeight: "75vh",
-  }}
->
   <PixelCanvas
     pixels={pixels}
     gridSize={100}
