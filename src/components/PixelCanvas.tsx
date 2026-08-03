@@ -79,8 +79,8 @@ style={{
                   : `(${x}, ${y})`
               }
               style={{
-                width: pixelSize,
-                height: pixelSize,
+                width: 8,
+                height: 8,
                 padding: 0,
                 margin: 0,
                 background: pixel?.color ?? "#ffffff",
