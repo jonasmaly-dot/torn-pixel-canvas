@@ -74,21 +74,20 @@ style={{
                   ? `${pixel.owner.playerName} [${pixel.owner.tornId}]`
                   : `(${x}, ${y})`
               }
-              style={{
-                width: 8,
-                height: 8,
-                padding: 0,
-                margin: 0,
-                background: pixel?.color ?? "#ffffff",
-                border: active
-                  ? "2px solid red"
-                  : "1px solid #ececec",
-                cursor: pixel
-                  ? "not-allowed"
-                  : "pointer",
-                boxSizing: "border-box",
-                transition: "transform .1s ease, filter .15s ease",
-              }}
+style={{
+  width: pixelSize,
+  height: pixelSize,
+  padding: 0,
+  margin: 0,
+  appearance: "none",
+  WebkitAppearance: "none",
+  borderRadius: 0,
+  display: "block",
+  background: pixel?.color ?? "#ffffff",
+  border: active ? "2px solid red" : "1px solid #000",
+  cursor: pixel ? "not-allowed" : "pointer",
+  boxSizing: "border-box",
+}}
             />
           );
         })}
