@@ -33,15 +33,14 @@ export default function PixelCanvas({
   );
 
   return (
-    <div
-      style={{
-    overflow: "auto",
-    width: "100%",
-    height: "100%",
-    padding: 20,
-    background: "#edf2f7",
-    borderRadius: 14,
-      }}
+   style={{
+  overflow: "auto",
+  width: "100%",
+  height: "75vh",
+  padding: 20,
+  background: "#1d1f22",
+  borderRadius: 12,
+}}
     >
       <div
         style={{
