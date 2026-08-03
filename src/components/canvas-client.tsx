@@ -111,32 +111,22 @@ function randomColor() {
 
     const rect = viewport.getBoundingClientRect();
 
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    pendingZoom.current = {
+      mouseX: e.clientX - rect.left,
+      mouseY: e.clientY - rect.top,
+      oldZoom: zoom,
+    };
 
-    const oldZoom = zoom;
-    const newZoom = Math.max(
-      0.5,
-      Math.min(8, oldZoom + (e.deltaY < 0 ? 0.25 : -0.25))
+    setZoom((z) =>
+      Math.max(0.5, Math.min(8, z + (e.deltaY < 0 ? 0.25 : -0.25)))
     );
-
-    if (oldZoom === newZoom) return;
-
-    const scale = newZoom / oldZoom;
-
-    const scrollX = viewport.scrollLeft;
-    const scrollY = viewport.scrollTop;
-
-    setZoom(newZoom);
-
-    requestAnimationFrame(() => {
-      viewport.scrollLeft =
-        (scrollX + mouseX) * scale - mouseX;
-
-      viewport.scrollTop =
-        (scrollY + mouseY) * scale - mouseY;
-    });
   }}
+  style={{
+    overflow: "auto",
+    width: "100%",
+    maxHeight: "75vh",
+  }}
+>
   style={{
     overflow: "auto",
     width: "100%",
