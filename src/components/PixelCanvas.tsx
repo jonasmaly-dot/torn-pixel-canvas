@@ -33,7 +33,8 @@ export default function PixelCanvas({
   );
 
   return (
-   style={{
+    <div
+    style={{
   overflow: "auto",
   width: "100%",
   height: "75vh",
