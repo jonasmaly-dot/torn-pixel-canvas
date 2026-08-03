@@ -95,7 +95,7 @@ style={{
 
   border: active
     ? "2px solid red"
-    : "1px solid #000",
+    : "1px solid #d9d9d9",
 
   cursor: pixel ? "not-allowed" : "pointer",
 
