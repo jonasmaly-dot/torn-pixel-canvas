@@ -47,7 +47,7 @@ export default function PixelCanvas({
 style={{
   display: "grid",
   gridTemplateColumns: `repeat(${gridSize}, ${pixelSize}px)`,
-  gridAutoRows: `${pixelSize}px`,
+  gridTemplateRows: `repeat(${gridSize}, ${pixelSize}px)`,
   width: gridSize * pixelSize,
   height: gridSize * pixelSize,
   background: "#ffffff",
