@@ -84,7 +84,7 @@ style={{
   borderRadius: 0,
   display: "block",
   background: pixel?.color ?? "#ffffff",
-  border: active ? "2px solid red" : "1px solid #000",
+  border: active ? "2px solid red" : "1px solid #ececec",
   cursor: pixel ? "not-allowed" : "pointer",
   boxSizing: "border-box",
 }}
