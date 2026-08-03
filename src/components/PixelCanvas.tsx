@@ -40,7 +40,7 @@ export default function PixelCanvas({
   padding: 20,
   background: "#1d1f22",
   borderRadius: 12,
-}}
+      }}
     >
       <div
         style={{
