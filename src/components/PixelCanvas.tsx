@@ -44,22 +44,18 @@ export default function PixelCanvas({
       }}
     >
       <div
-        style={{
+style={{
   display: "grid",
-  gridTemplateColumns: `repeat(${gridSize}, ${pixelSize}px)`,
-  gridTemplateRows: `repeat(${gridSize}, ${pixelSize}px)`,
+  gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
   width: gridSize * pixelSize,
   height: gridSize * pixelSize,
 
+  transform: `scale(${pixelSize / 8})`,
+  transformOrigin: "top left",
+
   background: "#ffffff",
-
   borderRadius: 10,
-
-  boxShadow:
-    "0 12px 35px rgba(0,0,0,.18)",
-
-  overflow: "hidden",
-        }}
+}}
       >
         {Array.from({ length: gridSize * gridSize }, (_, index) => {
           const x = index % gridSize;
