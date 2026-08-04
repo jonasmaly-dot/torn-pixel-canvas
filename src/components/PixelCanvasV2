@@ -13,6 +13,10 @@ export default function PixelCanvasV2({
 }: {
   pixels: Pixel[];
 }) {
+const canvasRef = useRef<HTMLCanvasElement>(null);
+
+const GRID_SIZE = 500;
+const PIXEL_SIZE = 10;
   return (
     <div
       style={{
