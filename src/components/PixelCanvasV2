@@ -1,0 +1,35 @@
+"use client";
+
+type Pixel = {
+  x: number;
+  y: number;
+  color: string;
+};
+
+export default function PixelCanvasV2({
+  pixels,
+}: {
+  pixels: Pixel[];
+}) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        overflow: "hidden",
+        background: "#f4f4f4",
+      }}
+    >
+      <canvas
+        width={5000}
+        height={5000}
+        style={{
+          imageRendering: "pixelated",
+          background: "#ffffff",
+          cursor: "crosshair",
+          display: "block",
+        }}
+      />
+    </div>
+  );
+}
