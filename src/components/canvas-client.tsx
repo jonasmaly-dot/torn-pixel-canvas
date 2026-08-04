@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import PixelCanvas from "@/components/PixelCanvasV2";
+import PixelCanvasV2 from "@/components/PixelCanvasV2";
 
 const COLORS = [
   "#000000","#404040","#808080","#C0C0C0","#FFFFFF",
