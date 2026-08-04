@@ -52,6 +52,23 @@ export default function CanvasClient({ pixels, user, leaders }: { pixels: Pixel[
   if (fav) setFavoriteColors(JSON.parse(fav));
 }, []);
 
+  useEffect(() => {
+  const viewport = viewportRef.current;
+  const pending = pendingZoom.current;
+
+  if (!viewport || !pending) return;
+
+  const scale = zoom / pending.oldZoom;
+
+  viewport.scrollLeft =
+    (viewport.scrollLeft + pending.mouseX) * scale - pending.mouseX;
+
+  viewport.scrollTop =
+    (viewport.scrollTop + pending.mouseY) * scale - pending.mouseY;
+
+  pendingZoom.current = null;
+}, [zoom]);
+
   
   function selectPixel(pixel: Coordinate, claimed: boolean) { if (dragRef.current.moved) { dragRef.current.moved = false; return; } if (!claimed) { setSelected(pixel); setNotice(""); } }
       function chooseColor(value: string) {
