@@ -13,6 +13,7 @@ export default function PixelCanvasV2({
 }: {
   pixels: Pixel[];
 }) {
+
 const canvasRef = useRef<HTMLCanvasElement>(null);
 
 const GRID_SIZE = 500;
@@ -27,8 +28,9 @@ const PIXEL_SIZE = 10;
       }}
     >
       <canvas
-        width={5000}
-        height={5000}
+       ref={canvasRef}
+       width={GRID_SIZE * PIXEL_SIZE}
+       height={GRID_SIZE * PIXEL_SIZE}
         style={{
           imageRendering: "pixelated",
           background: "#ffffff",
