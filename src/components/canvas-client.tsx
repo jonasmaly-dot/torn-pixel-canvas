@@ -144,7 +144,7 @@ function randomColor() {
     maxHeight: "75vh",
   }}
 >
-  <PixelCanvas
+  <PixelCanvasV2
     pixels={pixels}
     gridSize={100}
     pixelSize={Math.max(6, Math.round(zoom * 8))}
