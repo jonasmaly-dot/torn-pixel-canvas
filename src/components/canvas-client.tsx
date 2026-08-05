@@ -144,12 +144,8 @@ function randomColor() {
     maxHeight: "75vh",
   }}
 >
-  <PixelCanvasV2
-    pixels={pixels}
-    gridSize={100}
-    pixelSize={Math.max(6, Math.round(zoom * 8))}
-    selected={selected}
-    selectPixel={selectPixel}
+<PixelCanvasV2
+  pixels={pixels}
   />
 </div> <p className="canvas-help">Select one available pixel · choose a colour · spend one Pixel Credit to claim it.</p></section>
       <aside><section className="panel wallet-panel"><p className="panel-kicker">YOUR WALLET</p><strong className="credit-number">{credits}</strong><span>Pixel Credit{credits === 1 ? "" : "s"}</span><p className="muted">Send Xanax first, then use credits whenever you are ready.</p><button className="button" onClick={() => setShowCredits(true)}>Add Pixel Credits</button></section><section className="panel purchase-panel"><p className="panel-kicker">SELECTED PIXEL</p><h2>{selected ? `(${selected.x}, ${selected.y})` : "Choose a pixel"}</h2><div className="color-picker"><span>Colour</span><div style={{display:"grid",gridTemplateColumns:"repeat(8, 1fr)",gap:"6px",marginBottom:"12px"}}>{COLORS.map(value=><button key={value} aria-label={`Select ${value}`} onClick={()=>chooseColor(value)} className={`color-option ${color===value?"active":""}`} style={{background:value,width:"32px",height:"32px",border:color===value?"3px solid white":"1px solid #555"}}/> )}</div><input type="color" value={color} onChange={(e)=>chooseColor(e.target.value)} style={{width:"100%",height:"50px",cursor:"pointer"}}/><p style={{marginTop:"8px"}}>Selected: <strong>{color}</strong></p></div><p className="price-line"><b>1 Pixel Credit</b> will be deducted only after the purchase succeeds.</p><button className="button primary-action" disabled={credits < 1} onClick={buyPixel}>Buy this pixel</button>{credits < 1 && <button className="text-button" onClick={() => setShowCredits(true)}>You need Pixel Credits</button>}{!selected && (<p className="muted">Choose a colour first, then click an available pixel.</p>)}{notice && <p className="notice">{notice}</p>}</section><section className="panel leaderboard"><p className="panel-kicker">COMMUNITY RANKING</p><h2>Top collectors</h2><ol>{leaders.map((leader, index) => <li key={leader.tornId}><span><b>{index + 1}.</b> {leader.playerName}</span><strong>{leader._count.pixels}</strong></li>)}</ol><p className="muted">{pixels.length} claimed · {10_000 - pixels.length} available</p></section></aside></div>
